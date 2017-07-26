@@ -11,13 +11,29 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:extension.createScopedFixture"
     ],
     "main": "./extension",
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Pytest helper Configuration",
+            "properties": {
+                "pytestHelper.placeHolder":{
+                    "type": "string",
+                    "default": "hi!",
+                    "description": "Placeholder to don't forget how to use it."
+                },
+                "pytestHelper.availableFixtureScopes":{
+                    "type": "array",
+                    "default": ["function", "module", "session"],
+                    "description": "Array of strings with the available scopes for fixtures."
+                }
+            }
+        },
         "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
+            "command": "extension.createScopedFixture",
+            "title": "Create Scoped Fixture"
         }]
     },
     "scripts": {
