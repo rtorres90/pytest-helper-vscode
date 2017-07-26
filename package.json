@@ -11,7 +11,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.createScopedFixture"
+        "onCommand:extension.createScopedFixture",
+        "onCommand:extension.addMarkToCurrentFile"
     ],
     "main": "./extension",
     "contributes": {
@@ -34,6 +35,10 @@
         "commands": [{
             "command": "extension.createScopedFixture",
             "title": "Create Scoped Fixture"
+        },
+        {
+            "command": "extension.addMarkToCurrentFile",
+            "title": "Add mark to current file"
         }]
     },
     "scripts": {
