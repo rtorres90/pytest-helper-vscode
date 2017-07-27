@@ -33,13 +33,29 @@ let isTextInCurrentDocument = (textToSearch) => {
 };
 
 let getMatchesOfTextInString = (texToSearh, string) => {
-    console.log(texToSearh);
-    console.log(string);
-    if (string.indexOf(texToSearh) >= 0){
-        return string.indexOf(texToSearh) + "-" + getMatchesOfTextInString(texToSearh, string.substring(string.indexOf(texToSearh) + 1));
-    }else{
-        return 0
+    let stringToCheck = string;
+    let result = [];
+    while(true){
+        let indexOfText = stringToCheck.indexOf(texToSearh);
+        if (indexOfText >= 0){
+            if(result.length > 0){
+                result.push(indexOfText + result[result.length - 1] + 1);
+            }else{
+                result.push(indexOfText);
+            }
+            stringToCheck = stringToCheck.substring(indexOfText + 1);
+        }else{
+            return result;
+        }
     }
+};
+
+let getLastMatchOfTextInString = (texToSearh, string) => {
+    return getMatchesOfTextInString(texToSearh, string).pop();
+};
+
+let findClosestCarriageReturnOfIndex = (index, string) => {
+    return string.substring(index + 1).search("\n");
 };
 
 let createScopedFixtureFromTemplate = (fixtureScope, functionName) =>{
